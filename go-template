@@ -121,35 +121,35 @@ readme(){
 	readme_file="README.md"
 	# Only generate the readme file if it doesn't exist already, otherwise try
 	# and update it.
-	if [[ -f "$readme_file" ]]; then
-		
-	# Add the godoc badge if it's not already there.
-		new_line='[![GoDoc](https://img\.shields\.io/badge/godoc-reference-5272B4\.svg?style=for-the-badge)](https://godoc\.org/github\.com/'"${PROJECT_DIR}/${PROJECT_NAME}"')'
-		if ! grep -Fq "${new_line:0:20}" "$readme_file"; then
-		# Add the codacy badge if it's not already there.
-		new_line='[![Codacy](https://img.shields.io/codacy/grade/c2cbe5daa266419dbfbc2bfd23c5fff3.svg?style=for-the-badge)](https://app.codacy.com/app/'"${PROJECT_DIR}/${PROJECT_NAME}"')'
-		if ! grep -Fq "${new_line:0:20}" "$readme_file"; then
-			# Add the new line after the GoDoc badge line.
-			match_line='.*\[Go Doc\]*.'
-			sed -i $'\_'"${match_line}"'_a '"${new_line}" "$readme_file"
-		fi
-		
-		# Add the releases badge if it's not already there.
-		new_line='[![Github All Releases](https://img.shields.io/github/downloads/'"${PROJECT_DIR}/${PROJECT_NAME}"'/total.svg?style=for-the-badge)](https://github.com/'"${PROJECT_DIR}/${PROJECT_NAME}"'/releases)'
-		if ! grep -Fq "${new_line:0:20}" "$readme_file"; then
-			# Add the new line after the Codacy badge line.
-			match_line='.*\[Codacy\]*.'
-			sed -i $'\_'"${match_line}"'_a '"${new_line}" "$readme_file"
-		fi
-		# Check if the installation instructions line exists
-		new_line='For installation instructions from binaries please visit the [Releases Page](https://github\.com/'"${PROJECT_DIR}"/"${PROJECT_NAME}"'/releases)\.'
-		if ! grep -Fq "${new_line:0:50}" "$readme_file"; then
-			# Add the new line after the "#### Binaries" line.
-			match_line="#### Binaries"
-			# shellcheck disable=SC1117
-			sed -i $'\_'"${match_line}"'_a '"\\\n${new_line}" "$readme_file"
-		fi
-	else
+	# if [[ -f "$readme_file" ]]; then
+	#
+	# # Add the godoc badge if it's not already there.
+	# 	new_line='[![GoDoc](https://img\.shields\.io/badge/godoc-reference-5272B4\.svg?style=for-the-badge)](https://godoc\.org/github\.com/'"${PROJECT_DIR}/${PROJECT_NAME}"')'
+	# 	if ! grep -Fq "${new_line:0:20}" "$readme_file"; then
+	# 	# Add the codacy badge if it's not already there.
+	# 	new_line='[![Codacy](https://img.shields.io/codacy/grade/c2cbe5daa266419dbfbc2bfd23c5fff3.svg?style=for-the-badge)](https://app.codacy.com/app/'"${PROJECT_DIR}/${PROJECT_NAME}"')'
+	# 	if ! grep -Fq "${new_line:0:20}" "$readme_file"; then
+	# 		# Add the new line after the GoDoc badge line.
+	# 		match_line='.*\[Go Doc\]*.'
+	# 		sed -i $'\_'"${match_line}"'_a '"${new_line}" "$readme_file"
+	# 	fi
+	#
+	# 	# Add the releases badge if it's not already there.
+	# 	new_line='[![Github All Releases](https://img.shields.io/github/downloads/'"${PROJECT_DIR}/${PROJECT_NAME}"'/total.svg?style=for-the-badge)](https://github.com/'"${PROJECT_DIR}/${PROJECT_NAME}"'/releases)'
+	# 	if ! grep -Fq "${new_line:0:20}" "$readme_file"; then
+	# 		# Add the new line after the Codacy badge line.
+	# 		match_line='.*\[Codacy\]*.'
+	# 		sed -i $'\_'"${match_line}"'_a '"${new_line}" "$readme_file"
+	# 	fi
+	# 	# Check if the installation instructions line exists
+	# 	new_line='For installation instructions from binaries please visit the [Releases Page](https://github\.com/'"${PROJECT_DIR}"/"${PROJECT_NAME}"'/releases)\.'
+	# 	if ! grep -Fq "${new_line:0:50}" "$readme_file"; then
+	# 		# Add the new line after the "#### Binaries" line.
+	# 		match_line="#### Binaries"
+	# 		# shellcheck disable=SC1117
+	# 		sed -i $'\_'"${match_line}"'_a '"\\\n${new_line}" "$readme_file"
+	# 	fi
+	# else
 				cat <<-EOF > "$readme_file"
 				# $PROJECT_NAME
 
@@ -177,8 +177,8 @@ readme(){
 				\`\`\`console
 				\`\`\`
 				EOF
-			fi
-		}
+			# fi
+}
 
 main(){
 	echo "Generating project files for ${PROJECT_NAME}..."
