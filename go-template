@@ -185,15 +185,7 @@ readme(){
 	# Only generate the readme file if it doesn't exist already, otherwise try
 	# and update it.
 	if [[ -f "$readme_file" ]]; then
-		# Check if the travis line exists
-		old_line='[![Travis CI](https://travis-ci'
-		new_line='[![Travis CI](https://img\.shields\.io/travis/'"${PROJECT_DIR}/${PROJECT_NAME}"'\.svg?style=for-the-badge)](https://travis-ci\.org/'"${PROJECT_DIR}/${PROJECT_NAME}"')'
-		n=$(grep -nF "$old_line" "$readme_file" | cut -f1 -d: || true)
-		if [[ "$n" != "" ]]; then
-			# Replace that line with the new line.
-			sed -i "${n}"'s#.*#'"${new_line}"'#' "$readme_file"
-		fi
-
+		
 		# Add the godoc badge if it's not already there.
 		new_line='[![GoDoc](https://img\.shields\.io/badge/godoc-reference-5272B4\.svg?style=for-the-badge)](https://godoc\.org/github\.com/'"${PROJECT_DIR}/${PROJECT_NAME}"')'
 		if ! grep -Fq "${new_line:0:20}" "$readme_file"; then
